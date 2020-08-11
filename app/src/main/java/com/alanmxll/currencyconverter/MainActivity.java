@@ -2,6 +2,7 @@ package com.alanmxll.currencyconverter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.clearValues();
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button_calculate) {
@@ -35,7 +37,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if ("".equals(value)) {
                 Toast.makeText(this, R.string.type_a_value, Toast.LENGTH_LONG).show();
             } else {
+                Double real = Double.valueOf(value);
 
+                this.mViewHolder.textDolar.setText(String.format("%.2f", (real / 5.40)));
+                this.mViewHolder.textEuro.setText(String.format("%.2f", (real / 6.34)));
             }
         }
     }
